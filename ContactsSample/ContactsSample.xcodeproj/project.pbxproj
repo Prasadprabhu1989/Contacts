@@ -14,6 +14,9 @@
 		FDDE84771F3326B200F725E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDDE84751F3326B200F725E3 /* LaunchScreen.storyboard */; };
 		FDDE84821F3326B200F725E3 /* ContactsSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDE84811F3326B200F725E3 /* ContactsSampleTests.swift */; };
 		FDDE848D1F3326B200F725E3 /* ContactsSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDE848C1F3326B200F725E3 /* ContactsSampleUITests.swift */; };
+		FDDE849B1F3327F700F725E3 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDE849A1F3327F700F725E3 /* ContactCell.swift */; };
+		FDDE849D1F332A1C00F725E3 /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDE849C1F332A1C00F725E3 /* ContactManager.swift */; };
+		FDDE849F1F332C3A00F725E3 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDE849E1F332C3A00F725E3 /* ContactModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		FDDE84881F3326B200F725E3 /* ContactsSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactsSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDDE848C1F3326B200F725E3 /* ContactsSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsSampleUITests.swift; sourceTree = "<group>"; };
 		FDDE848E1F3326B200F725E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FDDE849A1F3327F700F725E3 /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		FDDE849C1F332A1C00F725E3 /* ContactManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactManager.swift; sourceTree = "<group>"; };
+		FDDE849E1F332C3A00F725E3 /* ContactModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +109,9 @@
 				FDDE84731F3326B200F725E3 /* Assets.xcassets */,
 				FDDE84751F3326B200F725E3 /* LaunchScreen.storyboard */,
 				FDDE84781F3326B200F725E3 /* Info.plist */,
+				FDDE849A1F3327F700F725E3 /* ContactCell.swift */,
+				FDDE849C1F332A1C00F725E3 /* ContactManager.swift */,
+				FDDE849E1F332C3A00F725E3 /* ContactModel.swift */,
 			);
 			path = ContactsSample;
 			sourceTree = "<group>";
@@ -259,7 +268,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDDE849B1F3327F700F725E3 /* ContactCell.swift in Sources */,
 				FDDE846F1F3326B200F725E3 /* ViewController.swift in Sources */,
+				FDDE849D1F332A1C00F725E3 /* ContactManager.swift in Sources */,
+				FDDE849F1F332C3A00F725E3 /* ContactModel.swift in Sources */,
 				FDDE846D1F3326B200F725E3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,6 +519,7 @@
 				FDDE84931F3326B200F725E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FDDE84941F3326B200F725E3 /* Build configuration list for PBXNativeTarget "ContactsSampleTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +528,7 @@
 				FDDE84961F3326B200F725E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FDDE84971F3326B200F725E3 /* Build configuration list for PBXNativeTarget "ContactsSampleUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +537,7 @@
 				FDDE84991F3326B200F725E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
