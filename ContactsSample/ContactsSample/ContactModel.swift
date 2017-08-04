@@ -11,7 +11,8 @@ import Contacts
 
 class ContactModel: NSObject {
     var contactArray = NSMutableArray()
-    let contactList = NSMutableDictionary()
+    var contactList = NSMutableDictionary()
+    var filteredArray = NSMutableArray()
     override init() {
         super.init()
     }
@@ -22,6 +23,25 @@ class ContactModel: NSObject {
 //            parserModel = parserModel .initWithContact(contact: contact as! CNContact)
         }
         return self
+    }
+    
+    func setSectionsForContacts(contactModel: ContactModel) -> ContactModel {
+        contactList = NSMutableDictionary()
+        let contactSortDescriptor = NSSortDescriptor(key: "contactName", ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare))
+        var found : Bool = false
+        contactArray.sort(using: [contactSortDescriptor])
+        for contactParser in contactArray {
+            var firstCharacter  = false
+            var isNameAvailable = false
+            if ((contactParser as! ContactParserModel).contactNumber as NSString).length > 0{
+                isNameAvailable = true
+            }
+            if isNameAvailable {
+                let firstChar = (contactParser as! ContactParserModel).contactName.character(at: 0) as unichar
+                let letters = NSCharacterSet.letters
+                firstCharacter = letters.contains(<#T##member: UnicodeScalar##UnicodeScalar#>)
+            }
+        }
     }
 }
 
