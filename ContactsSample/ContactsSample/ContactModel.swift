@@ -18,6 +18,7 @@ class ContactModel: NSObject {
     }
     func initWithContactArray(groupContactAray:NSMutableArray) -> ContactModel {
        contactArray = NSMutableArray()
+        
         for contact  in groupContactAray {
             var parserModel = ContactParserModel().initWithContact(contact: contact as! CNContact)
 //            parserModel = parserModel .initWithContact(contact: contact as! CNContact)
@@ -39,9 +40,55 @@ class ContactModel: NSObject {
             if isNameAvailable {
                 let firstChar = (contactParser as! ContactParserModel).contactName.character(at: 0) as unichar
                 let letters = NSCharacterSet.letters
-                firstCharacter = letters.contains(<#T##member: UnicodeScalar##UnicodeScalar#>)
+                firstCharacter = letters.contains(UnicodeScalar(firstChar)!)
+            }
+            if ((contactParser as! ContactParserModel).contactNumber as NSString).length == 0 || !firstCharacter {
+                if contactList.count == 0 {
+                    contactList.setValue(NSMutableArray(), forKey: "#")
+                }
+            }
+            else{
+                let c = (contactParser as! ContactParserModel).contactName.substring(to: 1)
+                found = false
+                for str in contactList.allKeys{
+                    if (str as! NSString).isEqual(to: c) {
+                        found = true
+                    }
+                }
+                if !found {
+                    contactList.setValue(NSMutableArray(), forKey: c.uppercased())
+                }
             }
         }
+        for temp in contactArray{
+            var firstCharacter = false as Bool
+            var isNameAvailable = false as Bool
+            if (temp as! ContactParserModel).contactName.length > 0{
+                isNameAvailable = true
+            }
+            if isNameAvailable {
+                let firstChar = (temp as! ContactParserModel).contactName.character(at: 0) as unichar
+                let letters = NSCharacterSet.letters
+                firstCharacter = letters.contains(UnicodeScalar(firstChar)!)
+            }
+            if (temp as! ContactParserModel).contactName.length == 0{
+                let arr = NSMutableArray()
+                arr.add(temp as! ContactParserModel)
+                contactList.setValue(arr, forKey: "#")
+            }
+            else if !firstCharacter {
+                let arr = NSMutableArray()
+                arr.add(temp as! ContactParserModel)
+                 contactList.setValue(arr, forKey: "#")
+                
+            }
+            else{
+                let arr = NSMutableArray()
+                arr.add(temp as! ContactParserModel)
+                contactList.setValue(arr, forKey: (temp as! ContactParserModel).contactName.uppercased)
+            }
+        }
+        return self
     }
 }
 

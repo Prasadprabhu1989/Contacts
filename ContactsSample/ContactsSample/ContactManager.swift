@@ -8,24 +8,40 @@
 
 import UIKit
 import Contacts
+
 class ContactManager: NSObject {
-    let contactManager = ContactManager()
+   static let sharedManager = ContactManager()
+    var gContactModel : ContactModel = ContactModel();
     lazy var contactStore : CNContactStore = {
         return CNContactStore()
     }()
    
 
-func fetchAllContacts(isGranted : Bool,contactModel: ContactModel,completion:()->Void ) -> Void {
+func fetchAllContacts(completion:@escaping (_ isGranted : Bool,_ contactModel: ContactModel)->Void) -> Void {
     
     switch CNContactStore.authorizationStatus(for: .contacts) {
     case .notDetermined:
     
-    contactStore.requestAccess(for: .contacts, completionHandler: { (isGranted, error) in
-       
+        weak var weakSelf = self
+        weakSelf?.contactStore.requestAccess(for: .contacts, completionHandler: { (isGranted, error) in
+        var contactModel = ContactModel()
+        if isGranted{
+             contactModel = (weakSelf?.getAllContacts())!
+        }
+        completion(isGranted, contactModel)
     })
     
+    
     break
+    case .authorized:
+        
+        let contactModel = getAllContacts()
+            completion(true, contactModel)
+        
+        break
+    
     default:
+        completion(false, gContactModel)
         break
         
     }
@@ -38,7 +54,9 @@ func fetchAllContacts(isGranted : Bool,contactModel: ContactModel,completion:()-
         try! contactStore.enumerateContacts(with: fetchRequest, usingBlock: { contact, stop in
             groupsOfContact.add(contact)
         })
-        let contactModel = ContactModel()
+        let contactModel = ContactModel().initWithContactArray(groupContactAray: groupsOfContact)
+        return contactModel
     }
+    
     
 }
