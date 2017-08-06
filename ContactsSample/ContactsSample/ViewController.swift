@@ -8,7 +8,8 @@
 
 import UIKit
 
-class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate{
+class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate{
+    @IBOutlet weak var searchBarContacts: UISearchBar!
     var gcontactModel = ContactModel()
     var selectedSection = NSInteger()
     var selectedRow = NSInteger()
@@ -85,6 +86,10 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         let indexPath = IndexPath(row: selectedRow, section: selectedSection)
         tableViewContacts.reloadRows(at: [indexPath], with: .automatic)
     }
-
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let contactModel = gcontactModel.searchText(searchString: searchText as NSString)
+        gcontactModel = contactModel
+        tableViewContacts.reloadData()
+    }
 }
 
