@@ -1,3 +1,4 @@
+
 //
 //  ContactModel.swift
 //  ContactsSample
@@ -12,7 +13,9 @@ import Contacts
 class ContactModel: NSObject {
     var contactArray = NSMutableArray()
     var contactList = NSMutableDictionary()
+//    var contactList   =  Dictionary <String, Array<Any>>()
     var filteredArray = NSMutableArray()
+    let isSelected = Bool()
     override init() {
         super.init()
     }
@@ -22,19 +25,36 @@ class ContactModel: NSObject {
         for contact  in groupContactAray {
             var parserModel = ContactParserModel().initWithContact(contact: contact as! CNContact)
 //            parserModel = parserModel .initWithContact(contact: contact as! CNContact)
+            if parserModel.alternateNumbers.count > 0 {
+                self.contactArray.add(parserModel)
+            }
         }
+        setSectionsForContacts(contactModel: self)
         return self
     }
+    func checkUnCheck(contactParser:ContactParserModel) -> Void {
+        for temp  in contactArray{
+            if (contactParser as ContactParserModel) .isEqual(temp as! ContactParserModel) {
+                if (temp as! ContactParserModel).isSelected {
+                    (temp as! ContactParserModel).isSelected  = false
+                }
+                else{
+                    (temp as! ContactParserModel).isSelected  = true
+                }
+            }
+        }
+    }
     
-    func setSectionsForContacts(contactModel: ContactModel) -> ContactModel {
+    func setSectionsForContacts(contactModel: ContactModel) {
         contactList = NSMutableDictionary()
+//       contactList = Dictionary<String, Array<Any>>()
         let contactSortDescriptor = NSSortDescriptor(key: "contactName", ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare))
         var found : Bool = false
-        contactArray.sort(using: [contactSortDescriptor])
+//        contactArray.sort(using: [contactSortDescriptor])
         for contactParser in contactArray {
             var firstCharacter  = false
             var isNameAvailable = false
-            if ((contactParser as! ContactParserModel).contactNumber as NSString).length > 0{
+            if ((contactParser as! ContactParserModel).contactName as NSString).length > 0{
                 isNameAvailable = true
             }
             if isNameAvailable {
@@ -42,7 +62,7 @@ class ContactModel: NSObject {
                 let letters = NSCharacterSet.letters
                 firstCharacter = letters.contains(UnicodeScalar(firstChar)!)
             }
-            if ((contactParser as! ContactParserModel).contactNumber as NSString).length == 0 || !firstCharacter {
+            if ((contactParser as! ContactParserModel).contactName as NSString).length == 0 || !firstCharacter {
                 if contactList.count == 0 {
                     contactList.setValue(NSMutableArray(), forKey: "#")
                 }
@@ -51,15 +71,18 @@ class ContactModel: NSObject {
                 let c = (contactParser as! ContactParserModel).contactName.substring(to: 1)
                 found = false
                 for str in contactList.allKeys{
-                    if (str as! NSString).isEqual(to: c) {
+                    if (str as! String).isEqual(c) {
                         found = true
                     }
                 }
                 if !found {
                     contactList.setValue(NSMutableArray(), forKey: c.uppercased())
+                    
                 }
             }
         }
+        
+        let arr = NSMutableArray()
         for temp in contactArray{
             var firstCharacter = false as Bool
             var isNameAvailable = false as Bool
@@ -72,23 +95,27 @@ class ContactModel: NSObject {
                 firstCharacter = letters.contains(UnicodeScalar(firstChar)!)
             }
             if (temp as! ContactParserModel).contactName.length == 0{
-                let arr = NSMutableArray()
+                
                 arr.add(temp as! ContactParserModel)
                 contactList.setValue(arr, forKey: "#")
+                
             }
             else if !firstCharacter {
-                let arr = NSMutableArray()
+//                let arr = NSMutableArray()
                 arr.add(temp as! ContactParserModel)
                  contactList.setValue(arr, forKey: "#")
                 
             }
             else{
-                let arr = NSMutableArray()
-                arr.add(temp as! ContactParserModel)
-                contactList.setValue(arr, forKey: (temp as! ContactParserModel).contactName.uppercased)
+//                let arr = NSMutableArray()
+                var s = contactList.object(forKey: (temp as! ContactParserModel).contactName.substring(to: 1).uppercased()) as! NSMutableArray
+                s.add(temp as! ContactParserModel)
+//                s = contactList.object(forKey: (temp as! ContactParserModel).contactName.substring(to: 1).uppercased())
+//                contactList.setValue(arr, forKey: (temp as! ContactParserModel).contactName.substring(to: 1).uppercased())
+                
             }
         }
-        return self
+        
     }
 }
 
@@ -97,8 +124,8 @@ class ContactParserModel: NSObject {
  
     var contactName = NSString()
     var contactNumber = NSString()
-    var alternateNumbers = NSArray()
-    var contactImage = NSData()
+    var alternateNumbers = NSMutableArray()
+    var contactImage = Data()
     var isSelected = Bool()
     override init() {
         super.init()
@@ -106,12 +133,19 @@ class ContactParserModel: NSObject {
     func initWithContact(contact: CNContact) -> ContactParserModel {
         contactName = contact.givenName as NSString
         if contact.thumbnailImageData !=  nil{
-        contactImage = contact.thumbnailImageData! as NSData
+        contactImage = contact.thumbnailImageData!
         }
-        alternateNumbers = (contact.phoneNumbers[0].value as CNPhoneNumber).value(forKey: "digits") as! NSArray
+//        alternateNumbers = contact.phoneNumbers as NSArray
+        contactNumber = (contact.phoneNumbers[0].value as CNPhoneNumber).value(forKey: "digits") as! NSString
+        
+        for i in 0..<contact.phoneNumbers.count {
+            alternateNumbers.add((contact.phoneNumbers[i].value as CNPhoneNumber).value(forKey: "digits")!)
+        }
+//        alternateNumbers = contact.phoneNumbers as NSArray
         if alternateNumbers.count > 0 {
-            contactNumber = alternateNumbers[0] as! NSString
+            contactNumber = (contact.phoneNumbers[0].value as CNPhoneNumber).value(forKey: "digits") as! NSString
         }
         return self
     }
+    
 }

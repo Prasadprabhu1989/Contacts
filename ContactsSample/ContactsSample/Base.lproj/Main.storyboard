@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -73,13 +73,14 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="buttonCheckUncheck" destination="TQO-ZF-BKE" id="eib-Jv-noP"/>
+                                            <outlet property="buttonDisclosure" destination="0Qi-OB-13z" id="2ag-qM-CYN"/>
                                             <outlet property="labelContactName" destination="Bzi-Pt-pJ0" id="gOy-Sy-NUs"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="ulf-2k-Aq0"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="dPS-DW-BDb"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="pM1-IL-vYU"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="DdV-jK-yLz"/>
                                 </connections>
                             </tableView>
                         </subviews>

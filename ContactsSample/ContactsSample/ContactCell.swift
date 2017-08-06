@@ -12,6 +12,7 @@ class ContactCell: UITableViewCell {
 
     @IBOutlet weak var buttonCheckUncheck: UIButton!
     @IBOutlet weak var labelContactName: UILabel!
+    @IBOutlet weak var buttonDisclosure: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
