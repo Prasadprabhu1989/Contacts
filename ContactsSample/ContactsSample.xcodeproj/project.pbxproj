@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FDB5605B1F3AD61C00AF7B63 /* ChangeNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB5605A1F3AD61C00AF7B63 /* ChangeNumberViewController.swift */; };
+		FDB5605D1F3B0F7600AF7B63 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDB5605C1F3B0F7600AF7B63 /* HeaderView.xib */; };
+		FDB5605F1F3B121500AF7B63 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB5605E1F3B121500AF7B63 /* HeaderView.swift */; };
+		FDB560611F3B18C500AF7B63 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB560601F3B18C500AF7B63 /* FirstViewController.swift */; };
 		FDDE846D1F3326B200F725E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDE846C1F3326B200F725E3 /* AppDelegate.swift */; };
 		FDDE846F1F3326B200F725E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDE846E1F3326B200F725E3 /* ViewController.swift */; };
 		FDDE84721F3326B200F725E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDDE84701F3326B200F725E3 /* Main.storyboard */; };
@@ -37,6 +41,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FDB5605A1F3AD61C00AF7B63 /* ChangeNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeNumberViewController.swift; sourceTree = "<group>"; };
+		FDB5605C1F3B0F7600AF7B63 /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
+		FDB5605E1F3B121500AF7B63 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		FDB560601F3B18C500AF7B63 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		FDDE84691F3326B200F725E3 /* ContactsSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactsSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDDE846C1F3326B200F725E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FDDE846E1F3326B200F725E3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +120,10 @@
 				FDDE849A1F3327F700F725E3 /* ContactCell.swift */,
 				FDDE849C1F332A1C00F725E3 /* ContactManager.swift */,
 				FDDE849E1F332C3A00F725E3 /* ContactModel.swift */,
+				FDB5605A1F3AD61C00AF7B63 /* ChangeNumberViewController.swift */,
+				FDB5605C1F3B0F7600AF7B63 /* HeaderView.xib */,
+				FDB5605E1F3B121500AF7B63 /* HeaderView.swift */,
+				FDB560601F3B18C500AF7B63 /* FirstViewController.swift */,
 			);
 			path = ContactsSample;
 			sourceTree = "<group>";
@@ -244,6 +256,7 @@
 				FDDE84771F3326B200F725E3 /* LaunchScreen.storyboard in Resources */,
 				FDDE84741F3326B200F725E3 /* Assets.xcassets in Resources */,
 				FDDE84721F3326B200F725E3 /* Main.storyboard in Resources */,
+				FDB5605D1F3B0F7600AF7B63 /* HeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,9 +283,12 @@
 			files = (
 				FDDE849B1F3327F700F725E3 /* ContactCell.swift in Sources */,
 				FDDE846F1F3326B200F725E3 /* ViewController.swift in Sources */,
+				FDB5605B1F3AD61C00AF7B63 /* ChangeNumberViewController.swift in Sources */,
+				FDB560611F3B18C500AF7B63 /* FirstViewController.swift in Sources */,
 				FDDE849D1F332A1C00F725E3 /* ContactManager.swift in Sources */,
 				FDDE849F1F332C3A00F725E3 /* ContactModel.swift in Sources */,
 				FDDE846D1F3326B200F725E3 /* AppDelegate.swift in Sources */,
+				FDB5605F1F3B121500AF7B63 /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

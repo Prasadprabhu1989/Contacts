@@ -17,9 +17,11 @@ class ContactModel: NSObject {
 //    var contactList   =  Dictionary <String, Array<Any>>()
     var filteredArray = NSMutableArray()
     let isSelected = Bool()
+    
     override init() {
         super.init()
     }
+    
     func initWithContactArray(groupContactAray:NSMutableArray) -> ContactModel {
        contactArray = NSMutableArray()
         
@@ -33,6 +35,7 @@ class ContactModel: NSObject {
         setSectionsForContacts(contactModel: self)
         return self
     }
+    
     func searchText(searchString : NSString) -> ContactModel {
         filteredArray = NSMutableArray()
         filteredContactList = NSMutableDictionary()
@@ -43,7 +46,7 @@ class ContactModel: NSObject {
             }
             else{
                 var descriptionRange = NSRange()
-                var nameRange = NSRange()
+                
                 if  (parserModel as! ContactParserModel).contactName.length == 0 {
                     descriptionRange = (parserModel as! ContactParserModel).contactNumber.range(of: searchString as String, options: .caseInsensitive)
                 }
@@ -67,6 +70,7 @@ class ContactModel: NSObject {
         return self
         
     }
+    
     func checkUnCheck(contactParser:ContactParserModel) -> Void {
         for temp  in contactArray{
             if (contactParser as ContactParserModel) .isEqual(temp as! ContactParserModel) {
@@ -79,10 +83,11 @@ class ContactModel: NSObject {
             }
         }
     }
+    
     func setSectionsForFilteredContacts(contactModel: ContactModel) {
         contactList = NSMutableDictionary()
         //       contactList = Dictionary<String, Array<Any>>()
-        let contactSortDescriptor = NSSortDescriptor(key: "contactName", ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare))
+        _ = NSSortDescriptor(key: "contactName", ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare))
         var found : Bool = false
         //        contactArray.sort(using: [contactSortDescriptor])
         for contactParser in filteredArray {
