@@ -14,6 +14,7 @@ class ContactModel: NSObject {
     var contactArray = NSMutableArray()
     var contactList = NSMutableDictionary()
     var filteredContactList = NSMutableDictionary()
+    var contactGroups = NSMutableArray()
 //    var contactList   =  Dictionary <String, Array<Any>>()
     var filteredArray = NSMutableArray()
     let isSelected = Bool()
@@ -70,7 +71,15 @@ class ContactModel: NSObject {
         return self
         
     }
-    
+    func dispalyContacts() -> ContactModel {
+        for temp in contactArray{
+            if(temp as! ContactParserModel).isSelected{
+                contactGroups.add(temp)
+                
+            }
+        }
+        return self
+    }
     func checkUnCheck(contactParser:ContactParserModel) -> Void {
         for temp  in contactArray{
             if (contactParser as ContactParserModel) .isEqual(temp as! ContactParserModel) {
@@ -239,6 +248,7 @@ class ContactParserModel: NSObject {
     var alternateNumbers = NSMutableArray()
     var contactImage = Data()
     var isSelected = Bool()
+    var contactId = String()
     override init() {
         super.init()
     }
@@ -249,7 +259,7 @@ class ContactParserModel: NSObject {
         }
 //        alternateNumbers = contact.phoneNumbers as NSArray
         contactNumber = (contact.phoneNumbers[0].value as CNPhoneNumber).value(forKey: "digits") as! NSString
-        
+        contactId = String.init(format: "%f", Date.timeIntervalBetween1970AndReferenceDate)
         for i in 0..<contact.phoneNumbers.count {
             alternateNumbers.add((contact.phoneNumbers[i].value as CNPhoneNumber).value(forKey: "digits")!)
         }

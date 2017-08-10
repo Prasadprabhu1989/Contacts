@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lW2-6Y-EjW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="MZw-1J-WmM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -108,7 +108,13 @@
                             <constraint firstAttribute="trailing" secondItem="iHH-5c-Jjy" secondAttribute="trailing" id="yWM-RR-PoE"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="F7D-CK-vIB"/>
+                    <navigationItem key="navigationItem" id="F7D-CK-vIB">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="lNo-LD-ffD">
+                            <connections>
+                                <action selector="done:" destination="BYZ-38-t0r" id="ZVU-sj-Weu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBarContacts" destination="iHH-5c-Jjy" id="IjK-r4-zGZ"/>
                         <outlet property="tableViewContacts" destination="S66-zz-luy" id="TzL-Dt-GJb"/>
@@ -117,7 +123,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="872.79999999999995" y="105.69715142428787"/>
+            <point key="canvasLocation" x="1812" y="105.69715142428787"/>
         </scene>
         <!--Change Number View Controller-->
         <scene sceneID="n2f-nz-1aw">
@@ -180,7 +186,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z9a-xU-scr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1728.8" y="122.78860569715144"/>
+            <point key="canvasLocation" x="2668" y="122.78860569715144"/>
         </scene>
         <!--First View Controller-->
         <scene sceneID="xPF-Pz-XtY">
@@ -199,7 +205,7 @@
                                 <color key="backgroundColor" red="0.17254901959999999" green="0.36470588240000001" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="101" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6aU-DB-ygk">
-                                <rect key="frame" x="0.0" y="200" width="375" height="413.5"/>
+                                <rect key="frame" x="0.0" y="260" width="375" height="354"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ContactCell" rowHeight="101" id="lgD-zZ-gh7" customClass="ContactCell" customModule="ContactsSample" customModuleProvider="target">
@@ -250,10 +256,18 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BbH-Vs-gzb">
+                                <rect key="frame" x="261" y="210" width="104" height="30"/>
+                                <state key="normal" title="Show Contacts"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="showContacts" id="grU-Gx-4fm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Wha-2D-Dvh" firstAttribute="height" secondItem="cxQ-la-xJb" secondAttribute="height" multiplier="0.3" id="0xt-r1-am0"/>
+                            <constraint firstItem="BbH-Vs-gzb" firstAttribute="top" secondItem="Wha-2D-Dvh" secondAttribute="bottom" constant="10" id="4jK-ep-4VI"/>
                             <constraint firstItem="6aU-DB-ygk" firstAttribute="leading" secondItem="cxQ-la-xJb" secondAttribute="leading" id="7fb-wH-L37"/>
                             <constraint firstAttribute="trailing" secondItem="6aU-DB-ygk" secondAttribute="trailing" id="AZ3-N2-PRJ"/>
                             <constraint firstItem="Wha-2D-Dvh" firstAttribute="top" secondItem="cxQ-la-xJb" secondAttribute="top" id="Nte-pg-JZA"/>
@@ -261,37 +275,40 @@
                             <constraint firstItem="EsO-d2-nQg" firstAttribute="top" secondItem="6aU-DB-ygk" secondAttribute="bottom" id="Rb0-Ro-FHH"/>
                             <constraint firstItem="Wha-2D-Dvh" firstAttribute="leading" secondItem="cxQ-la-xJb" secondAttribute="leading" id="Yzw-su-bby"/>
                             <constraint firstAttribute="trailing" secondItem="EsO-d2-nQg" secondAttribute="trailing" id="cig-Gx-GXR"/>
+                            <constraint firstAttribute="trailing" secondItem="BbH-Vs-gzb" secondAttribute="trailing" constant="10" id="gel-PT-vd1"/>
                             <constraint firstItem="EsO-d2-nQg" firstAttribute="height" secondItem="cxQ-la-xJb" secondAttribute="height" multiplier="0.08" id="orv-GL-lcZ"/>
-                            <constraint firstItem="6aU-DB-ygk" firstAttribute="top" secondItem="Wha-2D-Dvh" secondAttribute="bottom" id="upH-BX-8Yc"/>
+                            <constraint firstItem="6aU-DB-ygk" firstAttribute="top" secondItem="BbH-Vs-gzb" secondAttribute="bottom" constant="20" id="rHV-Yr-H98"/>
                             <constraint firstItem="3Be-8F-ISj" firstAttribute="top" secondItem="EsO-d2-nQg" secondAttribute="bottom" id="yw6-Zg-oFb"/>
                             <constraint firstAttribute="trailing" secondItem="Wha-2D-Dvh" secondAttribute="trailing" id="zI0-a6-aEK"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="pm0-fI-5ZZ"/>
                     <connections>
                         <outlet property="headerView" destination="Wha-2D-Dvh" id="hXh-c8-dUC"/>
+                        <outlet property="tableViewContacts" destination="6aU-DB-ygk" id="pmd-0d-ZDU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QJ1-U1-WF3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1034.4000000000001" y="109.29535232383809"/>
+            <point key="canvasLocation" x="-95.200000000000003" y="109.29535232383809"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="DDt-Gm-cJm">
+        <scene sceneID="X5p-wv-cuc">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eHX-K5-Xju" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MZw-1J-WmM" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gro-Vh-foc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ymS-85-dg4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="MRd-As-8ZE"/>
+                        <segue destination="lW2-6Y-EjW" kind="relationship" relationship="rootViewController" id="HOl-96-ZcM"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1zt-2f-SQQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9yG-68-BuX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-66.400000000000006" y="105.69715142428787"/>
+            <point key="canvasLocation" x="-1034.4000000000001" y="109.29535232383809"/>
         </scene>
     </scenes>
     <resources>

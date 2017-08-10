@@ -7,12 +7,14 @@
 //
 
 import UIKit
-
+typealias saveContact = (ContactModel) -> Void
 class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate{
     @IBOutlet weak var searchBarContacts: UISearchBar!
     var gcontactModel = ContactModel()
     var selectedSection = NSInteger()
     var selectedRow = NSInteger()
+    var saveContact : saveContact!
+
     @IBOutlet weak var tableViewContacts: UITableView!
     
     override func viewDidLoad() {
@@ -76,7 +78,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         }
         else{
             contactCell.labelContactName.text = contactParser.contactName as String
-            contactCell.labelContactNumber.text = contactParser.contactNumber as String
+//            contactCell.labelContactNumber.text = contactParser.contactNumber as String
         }
         return contactCell
     }
@@ -113,6 +115,19 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         self.performSegue(withIdentifier: "ShowAlternateNumbers", sender: button as UIButton)
     }
     
+    @IBAction func done(_ sender: UIBarButtonItem) {
+        let contactArray = NSMutableArray()
+       gcontactModel = gcontactModel.dispalyContacts()
+        saveContact(gcontactModel)
+        self.navigationController?.popViewController(animated: true)
+//        for contactParser in gcontactModel.contactArray{
+//            if (contactParser as! ContactParserModel).isSelected {
+////                saveContact(contactParser as! ContactParserModel)
+//                contactArray.add(contactParser as! ContactParserModel)
+//            }
+//        }
+        
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let sectionTitles = ((gcontactModel.contactList.allKeys as NSArray).sortedArray(using: #selector(NSString.compare(_:))) as NSArray).object(at: selectedSection)
         let contactParser = (gcontactModel.contactList.value(forKey: sectionTitles as! String) as! NSArray).object(at: selectedRow) as! ContactParserModel
