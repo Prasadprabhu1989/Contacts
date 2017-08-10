@@ -116,7 +116,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     @IBAction func done(_ sender: UIBarButtonItem) {
-        let contactArray = NSMutableArray()
+       
        gcontactModel = gcontactModel.dispalyContacts()
         saveContact(gcontactModel)
         self.navigationController?.popViewController(animated: true)
