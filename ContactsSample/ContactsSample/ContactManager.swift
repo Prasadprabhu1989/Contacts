@@ -49,10 +49,10 @@ class ContactManager: NSObject {
     func getAllContacts() -> ContactModel {
         let keyToFetch = [CNContactGivenNameKey , CNContactPhoneNumbersKey,CNContactThumbnailImageDataKey,CNContactUrlAddressesKey,CNContactMiddleNameKey]
         let fetchRequest = CNContactFetchRequest.init(keysToFetch: keyToFetch as [CNKeyDescriptor])
-        let groupsOfContact = NSMutableArray()
+        var groupsOfContact = [CNContact]()
         
         try! contactStore.enumerateContacts(with: fetchRequest, usingBlock: { contact, stop in
-            groupsOfContact.add(contact)
+            groupsOfContact.append(contact)
         })
         let contactModel = ContactModel().initWithContactArray(groupContactAray: groupsOfContact)
         return contactModel

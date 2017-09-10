@@ -14,8 +14,12 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     var selectedSection = NSInteger()
     var selectedRow = NSInteger()
     var saveContact : saveContact!
-
+    
     @IBOutlet weak var tableViewContacts: UITableView!
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,24 +47,24 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return gcontactModel.contactList.allKeys.count
+        //        return gcontactModel.contactList.allKeys.count
+        return gcontactModel.contactList.keys.count
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //        let sectionTitles = (gcontactModel.contactList.allKeys as NSArray).object(at: section) as! NSString
-        let sectionTitles = ((gcontactModel.contactList.allKeys as NSArray).sortedArray(using: #selector(NSString.compare(_:))) as NSArray).object(at: section)
-        print("sectionTitle :\(sectionTitles)")
         
-        
-        return (gcontactModel.contactList.value(forKey: sectionTitles as! String) as! NSArray).count
+        var keys = Array(gcontactModel.contactList.keys).sorted()
+        return (gcontactModel.contactList[keys[section]]?.count)!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let contactCell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as! ContactCell
-        let sectionTitles = ((gcontactModel.contactList.allKeys as NSArray).sortedArray(using: #selector(NSString.compare(_:))) as NSArray).object(at: indexPath.section)
-        //        let contactParser = gcontactModel.contactList.value(forKey: (sectionTitles as! NSArray).object(at: indexPath.row) as! String) as! ContactParserModel
-        let contactParser = (gcontactModel.contactList.value(forKey: sectionTitles as! String) as! NSArray).object(at: indexPath.row) as! ContactParserModel
+        
+        let sectionTitles = (Array(gcontactModel.contactList.keys).sorted())[indexPath.section]
+        let contactParser = (gcontactModel.contactList[sectionTitles]!)[indexPath.row]
+        
+        
         contactCell.buttonCheckUncheck.setImage(UIImage.init(named: "CheckNo"), for: .normal)
         contactCell.buttonCheckUncheck.setImage(UIImage.init(named: "Check"), for: .selected)
         contactCell.buttonCheckUncheck.isSelected = contactParser.isSelected
@@ -78,13 +82,15 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         }
         else{
             contactCell.labelContactName.text = contactParser.contactName as String
-//            contactCell.labelContactNumber.text = contactParser.contactNumber as String
+            //            contactCell.labelContactNumber.text = contactParser.contactNumber as String
         }
         return contactCell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ((gcontactModel.contactList.allKeys as NSArray).sortedArray(using: #selector(NSString.compare(_:))) as NSArray).object(at: section) as? String
+        //        return ((gcontactModel.contactList.allKeys as NSArray).sortedArray(using: #selector(NSString.compare(_:))) as NSArray).object(at: section) as? String
+        
+        return gcontactModel.contactList.keys.sorted()[section]
     }
     
     override func didReceiveMemoryWarning() {
@@ -95,8 +101,9 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     func checkUncheck(_ button : UIButton) {
         selectedSection = (button.tag)/1000;
         selectedRow = (button.tag)%1000;
-        let sectionTitles = ((gcontactModel.contactList.allKeys as NSArray).sortedArray(using: #selector(NSString.compare(_:))) as NSArray).object(at: selectedSection)
-        let contactParser = (gcontactModel.contactList.value(forKey: sectionTitles as! String) as! NSArray).object(at: selectedRow) as! ContactParserModel
+        
+        let sectionTitles = (Array(gcontactModel.contactList.keys).sorted())[selectedSection]
+        let contactParser = (gcontactModel.contactList[sectionTitles]!)[selectedRow]
         gcontactModel.checkUnCheck(contactParser: contactParser)
         let indexPath = IndexPath(row: selectedRow, section: selectedSection)
         tableViewContacts.reloadRows(at: [indexPath], with: .automatic)
@@ -116,21 +123,22 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     @IBAction func done(_ sender: UIBarButtonItem) {
-       
-       gcontactModel = gcontactModel.dispalyContacts()
+        
+        gcontactModel = gcontactModel.dispalyContacts()
         saveContact(gcontactModel)
         self.navigationController?.popViewController(animated: true)
-//        for contactParser in gcontactModel.contactArray{
-//            if (contactParser as! ContactParserModel).isSelected {
-////                saveContact(contactParser as! ContactParserModel)
-//                contactArray.add(contactParser as! ContactParserModel)
-//            }
-//        }
+        //        for contactParser in gcontactModel.contactArray{
+        //            if (contactParser as! ContactParserModel).isSelected {
+        ////                saveContact(contactParser as! ContactParserModel)
+        //                contactArray.add(contactParser as! ContactParserModel)
+        //            }
+        //        }
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let sectionTitles = ((gcontactModel.contactList.allKeys as NSArray).sortedArray(using: #selector(NSString.compare(_:))) as NSArray).object(at: selectedSection)
-        let contactParser = (gcontactModel.contactList.value(forKey: sectionTitles as! String) as! NSArray).object(at: selectedRow) as! ContactParserModel
+        let sectionTitles = (Array(gcontactModel.contactList.keys).sorted())[selectedSection]
+        let contactParser = (gcontactModel.contactList[sectionTitles]!)[selectedRow]
+        gcontactModel.checkUnCheck(contactParser: contactParser)
         let changeNumberController = segue.destination as! ChangeNumberViewController
         changeNumberController.contactparserModel = contactParser
         changeNumberController.selectNumber = { phonenumber in
