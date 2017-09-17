@@ -23,6 +23,10 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        var box = Box(_value: 20)
+        box.bind {
+            print($0)
+        }
         //        var person = Dictionary<String, ContactModel>()
         ContactManager.sharedManager.fetchAllContacts { (granted, contactModel) in
             guard granted  else{

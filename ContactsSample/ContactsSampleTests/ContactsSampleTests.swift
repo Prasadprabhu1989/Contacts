@@ -25,6 +25,12 @@ class ContactsSampleTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
+    func testEven() {
+        let vc1 = ViewController()
+        
+        
+        XCTAssertTrue(vc1.checkEven(num: 9))
+    }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.

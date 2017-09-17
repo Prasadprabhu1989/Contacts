@@ -28,10 +28,10 @@ class ContactModel: NSObject {
         contactArray = [ContactParserModel]()
         
         for contact  in groupContactAray {
-            var parserModel = ContactParserModel().initWithContact(contact: contact as! CNContact)
+            var parserModel = ContactParserModel().initWithContact(contact: contact)
             //            parserModel = parserModel .initWithContact(contact: contact as! CNContact)
             if parserModel.alternateNumbers.count > 0 {
-                self.contactArray.append(parserModel)
+                contactArray.append(parserModel)
             }
         }
         setSectionsForContacts(contactModel: self)
@@ -84,7 +84,7 @@ class ContactModel: NSObject {
     }
     func checkUnCheck(contactParser:ContactParserModel) -> Void {
         for temp  in contactArray{
-            if contactParser  .isEqual(temp) {
+            if contactParser .isEqual(temp) {
                 if temp.isSelected {
                     temp .isSelected  = false
                 }
